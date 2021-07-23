@@ -19,6 +19,12 @@ npm run dev
 
 and your server will start at localhost at PORT = 3100
 </p>
+#installed dependencied👇
+<br>
+
+
+![image](https://user-images.githubusercontent.com/68449680/126755228-98709a35-bd84-4748-9239-b2a600f459db.png)
+
 
 
 <hr>
