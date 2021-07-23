@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Your Uploads</title>
+</head>
+<body>
+    <style>
+        .container {
+            margin-top: 50px;
+            width: 100%;
+        }
+        .all-images{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .image{
+            margin: 5px;
+            border: 0.3px gray solid;
+        }
+        img{
+            width: 300px;
+            height: auto;
+        }
+        button{
+            margin: 5px;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            .all-images{
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <div class="container">
+        
+            <div class="m-auto">
+                <h1 class="text-center display-4 my-4">Your Uploads</h1>
+                <form action="/uploadManual" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    <input type="file" name="file" id="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label"></label>
+                </div>
+                <input type="submit" value="submit" class="btn btn-primary btn-block">
+            </form>
+            <hr>
+
+            <div class="all-images">
+            <% if (files) { %>
+                <% files.forEach((file) => { %>
+                    <div class="image">
+                        <% if (file.isImage) { %>
+                            <img src="/image/<%= file.filename %>" alt="images">
+                        <% } else { %>
+                            <% file.filename %>
+                        <% } %>   
+                    <form action="/files/<%= file._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-danger mt-4 btn-block">Delete</button>
+                    </form>    
+                        
+                    </div>
+                <% }); %>
+            <% } else {%>
+                <p class="text-center">No files uploaded yet.</p>
+            <% } %>
+        </div>
+            
+            </div>
+        
+    </div>
+
+
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
