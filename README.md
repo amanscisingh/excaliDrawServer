@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-and your server will start
+and your server will start at localhost at PORT = 3100
 </p>
 
 
